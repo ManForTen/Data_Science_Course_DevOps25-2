@@ -1,0 +1,33 @@
+stages:
+  load_data:
+    cmd: python src/load_data.py data/bank-full.csv data/raw.csv
+    deps:
+    - src/load_data.py
+    - data/bank-full.csv
+    outs:
+    - data/raw.csv
+
+  preprocess:
+    cmd: python src/preprocessing.py data/raw.csv data/processed.csv
+    deps:
+    - src/preprocessing.py
+    - data/raw.csv
+    outs:
+    - data/processed.csv
+
+  train:
+    cmd: python src/train.py data/processed.csv models/
+    deps:
+    - src/train.py
+    - data/processed.csv
+    outs:
+    - models/
+
+  evaluate:
+    cmd: python src/evaluate.py models/ data/processed.csv metrics.json
+    deps:
+    - data/processed.csv
+    - models/
+    - src/evaluate.py
+    outs:
+    - metrics.json
