@@ -7,10 +7,14 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
 from sklearn.ensemble import GradientBoostingClassifier, RandomForestClassifier
+from sklearn.exceptions import ConvergenceWarning
 from sklearn.linear_model import LogisticRegression
-from sklearn.model_selection import train_test_split
+from sklearn.metrics import classification_report, f1_score
+from sklearn.model_selection import cross_val_score, train_test_split
 from yellowbrick.model_selection import LearningCurve
 import visualisation
+import warnings
+warnings.filterwarnings("ignore", category=ConvergenceWarning)
 
 
 def compare_models(models, X_train, X_test, y_train, y_test, base_dir):
@@ -71,6 +75,17 @@ def compare_models(models, X_train, X_test, y_train, y_test, base_dir):
 
         except Exception as e:
             print(f"Ошибка при обучении {model_name}: {e}")
+        
+        # Отчёт
+        print(f"MODEL: {str(model)}")
+        print(f"ClREP:\n{classification_report(y_test, y_pred)}")
+        print(f"CVS:   {cross_val_score(model, X_train, y_train, cv=5)}")
+        print(f"Переобучение: {f1_score(y_train, model.predict(X_train), average='macro')} "
+              f"на {f1_score(y_test, y_pred, average='macro')}")
+        
+        model_path = os.path.join(model_dir, f"{model_name}.pkl")
+        joblib.dump(model, model_path)
+        print(f"Модель {model_name} сохранена в {model_path}")
 
         print("-" * 100)
 

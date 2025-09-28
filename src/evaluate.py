@@ -3,15 +3,18 @@ import sys
 import joblib
 import json
 import pandas as pd
+from sklearn.exceptions import ConvergenceWarning
 from sklearn.metrics import classification_report, f1_score
 from sklearn.model_selection import cross_val_score, train_test_split
+import warnings
+warnings.filterwarnings("ignore", category=ConvergenceWarning)
+
 
 if __name__ == "__main__":
     models_dir = sys.argv[1]    
     data_csv = sys.argv[2]      
     metrics_path = sys.argv[3]  
 
-    # Загружаем данные
     df = pd.read_csv(data_csv)
     X = df.drop("y", axis=1)
     y = df["y"]
