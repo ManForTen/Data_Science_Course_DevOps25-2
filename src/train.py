@@ -77,7 +77,7 @@ def compare_models(models, X_train, X_test, y_train, y_test, base_dir):
             print(f"Ошибка при обучении {model_name}: {e}")
         
         # Отчёт
-        print(f"MODEL: {str(model)}")
+        print(f"MODEL: {str(model_name)}")
         print(f"ClREP:\n{classification_report(y_test, y_pred)}")
         print(f"CVS:   {cross_val_score(model, X_train, y_train, cv=5)}")
         print(f"Переобучение: {f1_score(y_train, model.predict(X_train), average='macro')} "
