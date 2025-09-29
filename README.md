@@ -1,5 +1,5 @@
 # Data_Science_Course_DevOps25-2
-Проект по предмету «Введение в науку о данных»
+## Проект по предмету «Введение в науку о данных»
 
 Тема проекта: «Разработка и автоматизация пайплайна машинного обучения для решения задачи бинарной классификации»
 
@@ -10,3 +10,57 @@
 Роль №1: Data Scientist / Researcher - Шарипов Николай DevOps25-2
 
 Роль №2: ML Engineer / DevOps Engineer - Петриков Артём DevOps25-2
+
+Дататсет используется [UCI Bank Marketing Dataset](https://www.kaggle.com/datasets/adityamhaske/bank-marketing-dataset), который содержит в себе информацию о клиентах банка и их отлике на маркетинговую компанию
+
+Основные признаки:
+
+`age` - возраст клиента
+
+`job` – профессия
+
+`marital` – семейное положение
+
+`education` – образование
+
+`default` – наличие кредитного дефолта
+
+`balance` – средний баланс
+
+`housing` – ипотечный кредит
+
+`loan` – личный кредит
+
+`contact` – способ контакта
+
+`day` и `month` – день и месяц последнего контакта
+
+`duration` – продолжительность последнего звонка в секундах
+
+`campaign` - количество контактов, осуществленных в ходе этой кампании и для этого клиента
+
+`pdays` - количество дней, прошедших с момента последнего контакта с клиентом в рамках предыдущей кампании
+
+`previous` – количество контактов, осуществленных до этой кампании и для этого клиента
+
+`poutcome` – результат предыдущей маркетинговой кампании
+
+`y` – целевая переменная (yes/no – отклик клиента)
+
+Для использования пайплайна необходимо выполнить следующие команды:
+1) `git clone https://github.com/ManForTen/Data_Science_Course_DevOps25-2.git`
+2) `cd .\Data_Science_Course_DevOps25-2\` 
+3) `python3 -m venv .venv`
+4) Активация виртуального окружения
+
+Windows (cmd):`.venv\Scripts\activate`
+
+Windows (PowerShell):`.venv\Scripts\Activate.ps1`
+
+macOS/Linux:`source .venv/bin/activate`
+
+5) `pip install -r requirements.txt`
+6) `dvc repro`
+
+Для использования тестирования:
+1) `pytest .\src\tests\test.py`
